@@ -1,0 +1,205 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'jacoco' 
+apply plugin: 'pmd' 
+
+apply plugin: 'java-library-distribution' 
+
+/*
+ant.properties['user.properties.file'] = './build.properties'
+def props = new Properties()
+file("build.properties").withInputStream { props.load(it) }
+*/ 
+//apply from: 'properties.gradle' 
+ant.importBuild	'build.xml'
+
+ 
+//hello.doFirst	{ println 'Here comes ANT'} 
+//task	intro	<<	{ println 'Hello From Gradle'} 
+ 
+
+group = 'org.demo'
+version = '1.93.12-SNAPSHOT'
+project.ext.codedir  = 'mydocs3'
+project.ext.xyz=abc
+project.ext.ram='Ramco systems'
+//project.ext.ABC="Sriram" 
+
+description = """utilities"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+        
+     maven { 
+	         url "http://localhost:8081/artifactory/libs-release/"
+	         /* url "http://repo.maven.apache.org/maven2"
+             url "https://oss.sonatype.org/content/repositories/releases/" 
+			 */ 
+			 }
+	 mavenCentral() 
+	 jcenter()
+}
+
+
+
+dependencies {
+     compile group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.9'
+    compile(group: 'org.slf4j', name: 'slf4j-log4j12', version:'1.7.9') {
+exclude(module: 'slf4j-api')
+    }
+    compile  group: 'junit', name: 'junit', version:'4.7'
+   // compile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version:'2.23'
+    compile group: 'xmlunit', name: 'xmlunit', version:'1.4'
+    compile group: 'commons-httpclient', name: 'commons-httpclient', version:'3.1'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.1'
+    compile group: 'org.json', name: 'json', version:'20140107'
+    compile group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version:'1.9.4'
+    compile group: 'com.sun.xml.security', name: 'xml-security-impl', version:'1.0'
+}
+
+
+distZip.shouldRunAfter(build) 
+
+pmd {
+ignoreFailures = true
+}
+
+if(hasProperty("ABC")) check.dependsOn(pmdreport) 
+
+
+
+/*
+dependencies {
+    compile	fileTree(dir:	'lib',includes:	['*.jar'])
+} 
+*/
+
+task listDependencies << { 
+def a = configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
+println configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
+println a 
+} 
+
+jar { 
+   
+   baseName = project.name 
+   archiveName = 'mysample.jar' 
+   //def collection_files = configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
+   manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+        	'Implementation-Version': version,
+        	'Main-Class': 'org.demo.utilities.Main',
+			'MySample-Attribute': 'somedemocode',
+			'Build-Date': new Date(),
+			'Class-Path': configurations.runtime.files.collect { "./lib/$it.name" }.join(' '),
+			'Built-by': 'sriram'
+     } 
+   from('src/main/resources') { 
+      include '**/*'
+   } 
+} 
+
+
+task zip2(type: Zip) {
+    from configurations.compile.allArtifacts.files
+    from configurations.compile
+    archiveName project.name +"-"+ project.version+"-dependencies.zip"
+}
+
+task zip3(type: Zip) {
+    from configurations.runtime.allArtifacts.files
+    from configurations.runtime
+    archiveName project.name +"-"+ project.version+"-all.zip"
+}
+
+
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+        	'Implementation-Version': version,
+        	'Main-Class': 'org.demo.utilities.Main',
+			'IMP-DATE': new Date() 
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
+
+clean { 
+   delete 'target' , 'reports', 'lib'
+} 
+
+
+task hello2  <<                   { println 'Hello, ' + new Date()
+def s = "Gradle"; 
+s.class.methods.each { 
+  println it
+} 
+  println 'My IP IS: ' + 'ipconfig'.execute().text 
+  
+  def languages = [] 
+  languages << "Java"
+  languages << "Groovy" 
+  println languages 
+  println languages*.toUpperCase() 
+  println "Only groovy:" + languages[1].toLowerCase()
+ } 
+ 
+ 
+task myjar (type: Jar) {
+} 
+
+task	myDocs	<<	{ 
+ def  destDir = "$buildDir/myDocs2" 
+ if (!hasProperty("free")) { 
+    project.ext.free = 'undefined' 
+ } 
+ 
+ println "XYZ: " + xyz + ", Free=" + free +", RAM: "  + ram
+
+copy	{
+  
+from	'D:/02_work/training/course/maven/for_printing'
+into	destDir
+}
+}
+/*
+task	zip(type:	Zip)	{ from	myDocs.destDir
+}
+*/
+
+task jacocoTestReportMy(type: JacocoReport) {  
+sourceSets sourceSets.main
+executionData test
+}
+
+
+task printProps {
+    doLast {
+        // println commandLineProjectProp
+        //println gradlePropertiesProp
+        //println systemProp.system
+        //println envProjectProp
+		//println abc 
+        println System.properties['system']
+		println System.properties['mysystemvalue']
+		 System.properties.each { k,v->
+    println "$k = $v"  
+	
+}
+  
+    }
+}
+
+tasks.withType(Pmd) {  reports {
+xml.enabled = false  
+html.enabled = true
+}
+}

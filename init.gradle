@@ -1,0 +1,3 @@
+allProjects {
+  ant.properties['user.properties.file'] = 'd:/gitrepos/democode/build.properties'
+}

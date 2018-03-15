@@ -1,0 +1,10 @@
+ant.home="d:/apps/ant"
+project.build.outputDirectory=${maven.build.outputDir}
+project.build.directory=${maven.build.dir}
+maven.repo.local="d:/repos"
+maven.settings.offline=false
+project.build.sourceEncoding=UTF-8
+maven.settings.interactiveMode=false
+maven.build.version="V1.2"
+maven.test.skip=false
+pmd.installpath="d:/Apps/pmd-bin-5.2.3/lib"
