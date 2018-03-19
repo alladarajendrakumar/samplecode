@@ -1,9 +1,10 @@
 package org.demo.utilities;
-import static org.junit.Assert.*;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.Assert; 
+import org.testng.annotations.BeforeClass; 
+import org.testng.annotations.AfterClass; 
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 public class NumberRangeCounterTest {
 	  private static final int LOWER_BOUND = 1000;
@@ -13,7 +14,7 @@ public class NumberRangeCounterTest {
 	    = new NumberRangeCounter( LOWER_BOUND, RANGE );
 	  
 	  private CounterStorage storage;
-	   	@Before
+	   	@BeforeTest
 	  	public void setUp() {
 	  	  storage = new CounterStorageDouble();
 	  	  counter = new NumberRangeCounter( storage, LOWER_BOUND, RANGE );
@@ -22,11 +23,11 @@ public class NumberRangeCounterTest {
 	  public void subsequentNumber() {
 	    int first = counter.next();
 	    int second = counter.next();
-	    assertEquals( first, second );
+	    Assert.assertEquals( first, second );
 	  }
 	  @Test
 	  public void lowerBound() {
 	    int actual = counter.next();
-	    assertEquals( ZERO_RANGE, actual );
+	    Assert.assertEquals( ZERO_RANGE, actual );
 	  }
 	}

@@ -1,6 +1,11 @@
 package org.demo.utilities;
 import org.demo.utilities.LoggerStackTraceUtil;
-import org.junit.Test;
+
+import org.testng.Assert; 
+import org.testng.annotations.BeforeClass; 
+import org.testng.annotations.AfterClass; 
+import org.testng.annotations.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

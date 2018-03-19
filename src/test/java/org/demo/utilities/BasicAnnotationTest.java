@@ -1,10 +1,12 @@
 package org.demo.utilities;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.Assert; 
+import org.testng.annotations.BeforeClass; 
+import org.testng.annotations.AfterClass; 
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest; 
+import org.testng.annotations.Test;
+
 
 public class BasicAnnotationTest {
 
@@ -22,13 +24,13 @@ public class BasicAnnotationTest {
 
     // Should rename to @BeforeTestMethod
     // e.g. Creating an similar object and share for all @Test
-    @Before
+    @BeforeTest
     public void runBeforeTestMethod() {
         System.out.println("@Before - runBeforeTestMethod");
     }
 
     // Should rename to @AfterTestMethod
-    @After
+    @AfterTest
     public void runAfterTestMethod() {
         System.out.println("@After - runAfterTestMethod");
     }
