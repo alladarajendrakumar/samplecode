@@ -2,3 +2,7 @@
 .scannerwork
 gradle
 gradle/* 
+.gradle
+.gradle/*
+.git
+.git/* 
