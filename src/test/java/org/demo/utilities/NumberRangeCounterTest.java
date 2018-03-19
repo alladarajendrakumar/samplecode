@@ -18,15 +18,16 @@ public class NumberRangeCounterTest {
 	  	public void setUp() {
 	  	  storage = new CounterStorageDouble();
 	  	  counter = new NumberRangeCounter( storage, LOWER_BOUND, RANGE );
+		  System.out.println("Running.."); 
 	  	}
-	  @Test
-	  public void subsequentNumber() {
+	  @Test (groups = {"numbers", "unit"} )
+	  public void test_subsequentNumber() {
 	    int first = counter.next();
 	    int second = counter.next();
 	    Assert.assertEquals( first, second );
 	  }
-	  @Test
-	  public void lowerBound() {
+	 @Test (groups = {"numbers", "unit"} )
+	  public void test_lowerBound() {
 	    int actual = counter.next();
 	    Assert.assertEquals( ZERO_RANGE, actual );
 	  }

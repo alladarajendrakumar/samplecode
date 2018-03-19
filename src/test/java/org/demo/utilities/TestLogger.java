@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 public class TestLogger {
 
         private static final Logger LOG = LoggerFactory.getLogger(TestLogger.class);
-        @Test
+        @Test  (groups = {"logger", "unit"} ) 
         public void testGetErrorMessage1() {
                 String s = "Not Implemented";
                 try { 
@@ -26,7 +26,7 @@ public class TestLogger {
                 LOG.info(s);
                  assert(s.contains(System.getProperty("line.separator"))); 
         }
-        @Test
+        @Test (groups = {"logger", "unit"} ) 
         public void testGetErrorMessage2() {
                 String s = "Not Implemented";
                 LoggerStackTraceUtil util = new LoggerStackTraceUtil();
@@ -42,7 +42,7 @@ public class TestLogger {
                 assert(s.contains("/ by zero"));  
         }
 
-        @Test
+       @Test (groups = {"logger", "unit"} ) 
         public void testGetErrorMessage3() {
                 String s = "Not Implemented";
                 try { 
@@ -57,7 +57,7 @@ public class TestLogger {
                 assert(s.contains("/ by zero"));  
         }
 
-        @Test
+        @Test (groups = {"logger", "unit"} ) 
         public void testGetErrorMessage4() {
                 String s = "Not Implemented";
                 try { 
@@ -72,7 +72,7 @@ public class TestLogger {
                 assert(s.contains("TESTIOEXCEPTION"));  
         }
         
-        @Test
+        @Test (groups = {"logger", "unit"} ) 
         public void testGetErrorMessage5() {
                 String s = "Not Implemented";
                 try { 

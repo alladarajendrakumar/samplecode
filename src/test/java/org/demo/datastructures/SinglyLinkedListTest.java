@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class SinglyLinkedListTest {
 	 
-    @Test
+    @Test (groups = {"datastructure", "unit"} ) 
     public void testNewLinkedList(){
         SinglyLinkedList singly = new SinglyLinkedList();
         Assert.assertTrue(singly.isEmpty());       // linked list should be empty

@@ -69,7 +69,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by Emp Name Ascending
      */
-	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpNameAsc() {
             ArrayList myData = new ArrayList(); initialize(myData);
             Collections.sort(myData, new GenericComparator("empName", true)); // sort ascending.. 
@@ -79,7 +79,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by Emp Name Descending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpNameDesc() {
             ArrayList myData = new ArrayList(); initialize(myData);
             Collections.sort(myData, new GenericComparator("empName", false)); // sort ascending..
@@ -92,7 +92,7 @@ public class TestGenericComparator
      * Test for Sorting by Emp ID Ascending
      */
 	 //@Ignore("testSortIDAsc")
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpIDAsc() {
             ArrayList myData = new ArrayList(); initialize(myData);
 
@@ -104,7 +104,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting besy Emp ID Descending...
      */
-	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpIDDesc() {
             ArrayList myData = new ArrayList(); initialize(myData);
             Collections.sort(myData, new GenericComparator("empID", false)); // sort Descending 
@@ -115,7 +115,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by spare Ascending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpSpareAsc() {
             ArrayList myData = new ArrayList(); initialize(myData);
             Collections.sort(myData, new GenericComparator("spare", true)); // sort ascending 
@@ -125,7 +125,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by spare Descending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpSpareDesc() {
             ArrayList myData = new ArrayList(); initialize(myData);
             Collections.sort(myData, new GenericComparator("spare", false)); // sort Descending 
@@ -137,7 +137,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by spare2 Descending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpSpareDesc2() {
             ArrayList myData = new ArrayList(); initialize(myData);
 
@@ -149,7 +149,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by spare2 Ascending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpSpareAsc2() {
             ArrayList myData = new ArrayList(); initialize(myData);
 
@@ -161,7 +161,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by spare2 Ascending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
         public void testSortEmpSpare2StringAsc() {
             ArrayList myData = new ArrayList(); initialize2(myData);
             Collections.sort(myData, new GenericComparator("spare2", true)); // sort ascending 
@@ -171,7 +171,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by spare2 Desc
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpSpare2StringDesc() {
             ArrayList myData = new ArrayList(); initialize2(myData);
             Collections.sort(myData, new GenericComparator("spare2", false)); // sort Descending 
@@ -180,7 +180,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting by caseInsensitive Emp Name Ascending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpNameAscNewComparator() {
             ArrayList myData = new ArrayList(); initialize3(myData);
             Collections.sort(myData, new CaseInsensitiveComparator("empName", true)); // sort ascending.. 
@@ -194,7 +194,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting caseInsensitive by Emp Name Ascending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpNameAscNewComparator3Element() {
             ArrayList myData = new ArrayList(); initialize3(myData);
             Collections.sort(myData, new CaseInsensitiveComparator("empName", true)); // sort ascending.. 
@@ -207,7 +207,7 @@ public class TestGenericComparator
     /**
      * Test for Sorting caseInsensitive by Emp Name Descending
      */
-	 	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testSortEmpNameDescNewComparator3Element() {
             ArrayList myData = new ArrayList(); initialize3(myData);
             Collections.sort(myData, new CaseInsensitiveComparator("empName", false)); // sort ascending.. 
@@ -216,7 +216,7 @@ public class TestGenericComparator
               Assert.assertEquals("Asma".toUpperCase(), ((UnitDTO)myData.get(5)).getEmpName().toUpperCase()); 
 
     }
-	 @Test
+	 @Test (groups = {"comparator", "unit"} )
     public void testDoubleSort() {
             ArrayList myData = new ArrayList();            
                 UnitDTO d1 = new UnitDTO(); 

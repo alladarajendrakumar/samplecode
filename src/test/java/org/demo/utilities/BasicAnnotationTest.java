@@ -35,12 +35,12 @@ public class BasicAnnotationTest {
         System.out.println("@After - runAfterTestMethod");
     }
 
-    @Test
+    @Test (groups = {"annotation", "unit"} ) 
     public void test_method_1() {
         System.out.println("@Test - test_method_1");
     }
 
-    @Test
+    @Test (groups = {"annotation", "unit"} )
     public void test_method_2() {
         System.out.println("@Test - test_method_2");
     }
